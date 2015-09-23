@@ -15,6 +15,7 @@
 # Useful in scenarios where the ENC isn't used.
 
 require 'yaml'
+require 'puppet'
 
 $settings_file = "/etc/puppet/foreman.yaml"
 
@@ -104,11 +105,8 @@ def process_all_facts(http_requests)
 end
 
 def build_body(certname,filename)
-  # Strip the Puppet:: ruby objects and keep the plain hash
-  facts        = File.read(filename)
-  puppet_facts = YAML::load(facts.gsub(/\!ruby\/object.*$/,''))
-  hostname     = puppet_facts['values']['fqdn'] || certname
-  {'facts' => puppet_facts['values'], 'name' => hostname, 'certname' => certname}
+  facts = YAML.load_file(filename).values
+  {'facts' => facts, 'name' => facts['hostname'], 'certname' => certname}
 end
 
 def initialize_http(uri)
