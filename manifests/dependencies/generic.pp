@@ -33,6 +33,7 @@ class puppet_stack::dependencies::generic {
     unless defined(Class['apache']) {
       class { 'apache':
         default_vhost => false,
+        keepalive => "On",
       }
     }
     contain apache
