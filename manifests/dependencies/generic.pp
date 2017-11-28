@@ -34,7 +34,7 @@ class puppet_stack::dependencies::generic {
       class { 'apache':
         default_vhost => false,
         keepalive => "On",
-        keepalivetimeout => "100",
+        keepalive_timeout => "100",
       }
     }
     contain apache
