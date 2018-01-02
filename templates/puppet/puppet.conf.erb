@@ -19,6 +19,7 @@
     <%- if @use_foreman_as_an_enc -%>
     external_nodes = /etc/puppet/node.rb
     node_terminus = exec
+    timeout = 5m
     <%- end -%>
 
 <% unless @puppet_role == 'ca' -%>
