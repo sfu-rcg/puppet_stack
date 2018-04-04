@@ -39,7 +39,7 @@ def stat_file(certname)
 end
 
 def tsecs
-  SETTINGS[:timeout] || 10
+  SETTINGS[:timeout] || 300
 end
 
 def thread_count
